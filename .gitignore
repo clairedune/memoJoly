@@ -1,0 +1,9 @@
+# Compiled source #
+###################
+
+*.aux
+*.bbl
+*.dvi
+*.log
+*.blg
+*.DS_Store
