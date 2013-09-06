@@ -124,7 +124,7 @@ In this paper, the system aims at tracking some specific parameters for biomecha
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\columnwidth]{images/ourRollator.eps}
+	\includegraphics[width=0.8\columnwidth]{images/ourRollator.ps}
 	\caption{Our smart rollator : a 4 wheeled rollator equipped with odometers and a kinect sensor}
 	\label{fig:ourrollator}
 \end{figure}
@@ -146,15 +146,7 @@ In this paper, we focus on the estimation of leg and feet poses in a Frame attac
 \section{Algorithm for Kinect processing}
 \label{sec:Algorithm}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth,trim=4cm 2cm 2cm 3cm,clip=true]{images/KinectFrames}
-	\caption{Left: kinect depth map. The warmer is the color, the larger the depth associated is -- Right: 3D points cloud associated to the depth map (for clarity the feet, rollator and ground were segmented).}
-	\label{fig:KinectFrames}
-\end{figure}
-
-The algorithm to process Kinect images is presented in this section. \CD{The method aims at fitting a 3D skeleton on the partial kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{KinectFrames}) in two part (left and right) which are composed by}:
-
+The algorithm to process Kinect images is presented in this section. \CD{The method aims at fitting a 3D skeleton on the partial kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the heel
 	\item a second segment which has a predefined length starting from the heel in the direction of the leg
@@ -509,7 +501,7 @@ Finally, the Kalman  prediction can be applied to outlier rejection. The idea is
 	\label{eq:mahal}
 \end{equation}
 where $\mathbf{P_i}_k^{pred}$ is the covariance associated to the prediction of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{pred}$) and $\mathbf{R_i}^{meas}$ is the covariance matrix associated to the measurement of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{meas}$). The value computed in~\ref{eq:mahal} is computed to a threshold computed thanks to $\chi^2$ distribution. The measurement is rejected if the value is above the threshold. 
- 
+
 This algorithm allows us to detect and reject spurious values computed by the segmentation algorithm. For example, if the fitting strongly fails and converge to a time-inconsistent value, the Kalman filtering with outlier rejection is able to reject it.
 \section{Results}
 
@@ -517,51 +509,13 @@ This algorithm allows us to detect and reject spurious values computed by the se
 Our rollator with Kinect was tested with a person walking during two cycles of walk. A ground truth is provided by the motion capture sensor. We propose in this experiment to compute the evolution of several parameters during the walk:
 \begin{itemize}
 	\item The feet angles in the Kinect frame
-	\item The angle between the two segments computed, that we approximate to the ankle angle
+	\item The angle between one foot and the associated leg
 	\item The height of the heel
 \end{itemize}
 These parameters provide very useful information about the walk. For example, it is possible to know if the cycle is standard or not. By combining these information with the odometry, it is possible to make statistics about the length of the steps (out of the scope of this paper).
 
-Unfortunatelly, the data collected do not correspond to a full legnth cycle walk. This is due to problem of visibility of the whole leg in the Kinect frame: our Kinect was a bit to close of the member and there was a problem of angle of view. The first problem will be corrected in the future by using a Prime sense\footnote{An other constructor of Kinect-like sensor who sells a small-range certified version of the sensor.} adapted for close measurements. The second problem will be corrected by slightly modifying the viewing angle of the sensor. To these reasons, the following results can only be considered as \textbf{preliminary results}. 
-
 \subsection{Results analysis}
-Fig.~\ref{} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. 
 
-Concerning the bearing angles, the results are less precise. However, the results are globally consistent and can be used to detect anomalies in the angle feet (see fig.~\ref{}).
-
-The ankle angle estimation is also consistent (fig.~\ref{}) even if it is a bit less precise than the feet elevation angles. 
-
-Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordinate of the heel computed by our model. However, we know that these two points are not exactly and that the point associated to the heel in our model is higher. To test the consistency of our model, we test if the real heel is in the axis defined by our model (fig~\ref{ }). Then, the distance between the two points should be constant.
-
-%Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth]{images/footError}
-	\caption{Orientation errors for the feet}
-	\label{fig:footError}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth]{images/errorAnkle}
-	\caption{Error on ankle angle estimation}
-	\label{fig:errorAnkle}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth]{images/heelError}
-	\caption{Difference between real heel position and estimation}
-	\label{fig:heelError}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth]{images/exProfile2}
-	\caption{$z$ trajectory of the toes and ``heels'' estimated by the algorithm}
-	\label{fig:exProfile}
-\end{figure}
 \section{Conclusion}
 
 \bibliographystyle{IEEEtran} 
