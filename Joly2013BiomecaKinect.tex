@@ -72,7 +72,7 @@ Clinical evaluation of frailty in the elderly is the first step to decide the de
 
 The system used here is a \textit{smart rollator} equipped with sensors, for gait monitoring. The objective is to provide physicians with the features they are used to process to evaluate elderly frailty,  while maintaining a low cost  and ensuring a good ease of use and by embedding all the sensors on the walker without equipping the patient. And at best, the intelligent walker could deliver others relevant features that will enriched the existing feature set. 
 
-\CD{This paper focuses on the use of an embedded kinect sensor to segment online the lower limb and estimated. The algorithm returns the pose of the leg and feet with regards to the rollator. The next section gives an overview of existing smart rollators and depicts our smart rollator.. Section III describes the lower limb detection and pose estimation, based on kinect depth map. Section IV focuses on a kalman filtering to refine this estimation. Section V shows experimental results  }{}
+\CDOK{This paper focuses on the use of an embedded kinect sensor to segment online the lower limb and estimated. The algorithm returns the pose of the leg and feet with regards to the rollator. The next section gives an overview of existing smart rollators and depicts our smart rollator. Section III describes the lower limb detection and pose estimation, based on kinect depth map. Section IV focuses on a kalman filtering to refine this estimation. Section V shows experimental results  }{}
 
 \section{System description}
 
@@ -130,37 +130,37 @@ In this paper, the system aims at tracking some specific parameters for biomecha
 \end{figure}
 
 
-Our system is made \CD{of}{by} a standard \CD{4 wheeled rollator}{walker} \CD{equipped with sensors}{on which some equipment was installed} (fig.~\ref{fig:ourrollator}):
+Our system is made \CDOK{of}{by} a standard \CDOK{4 wheeled rollator}{walker} \CDOK{equipped with sensors}{on which some equipment was installed} (fig.~\ref{fig:ourrollator}):
 \begin{itemize}
 	\item The Kinect sensor which is viewing the feet of the person.
-	\item Odometers \CD{are}{were} mounted on the rear wheels to estimate the trajectory of the walker.
-	\item A laptop \CD{is}{was} installed to grab the sensor data
-	\item Finally, motion capture\footnote{A Qualysis system is used.} markers \CD{are}{were} installed in order to compute the ground truth. 
+	\item Odometers \CDOK{are}{were} mounted on the rear wheels to estimate the trajectory of the walker.
+	\item A laptop \CDOK{is}{was} installed to grab the sensor data
+	\item Finally, motion capture\footnote{A Qualysis system is used.} markers \CDOK{are}{were} installed in order to compute the ground truth. 
 \end{itemize}
 
 
-In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width may be done by fusing the results of this paper with odometry (out of scope here). \CD{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
+In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width may be done by fusing the results of this paper with odometry (out of scope here). \CDOK{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
 
 
 
 \section{Algorithm for Kinect processing}
 \label{sec:Algorithm}
 
-\begin{figure}
+\begin{figure*}
 	\centering
-	\includegraphics[width=0.45\textwidth,trim=4cm 2cm 2cm 3cm,clip=true]{images/KinectFrames}
+	\includegraphics[width=0.95\textwidth,trim=4cm 2cm 2cm 3cm,clip=true]{images/KinectFrames}
 	\caption{Left: kinect depth map. The warmer is the color, the larger the depth associated is -- Right: 3D points cloud associated to the depth map (for clarity the feet, rollator and ground were segmented).}
 	\label{fig:KinectFrames}
-\end{figure}
+\end{figure*}
 
-The algorithm to process Kinect images is presented in this section. \CD{The method aims at fitting a 3D skeleton on the partial kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{}) in two part (left and right) which are composed by}:
+The algorithm to process Kinect images is presented in this section. \CDOK{The method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the heel
 	\item a second segment which has a predefined length starting from the heel in the direction of the leg
 \end{itemize}
-\CD{To do so}{Moreover}, a \CD{parametric}{} model will be \CD{fitted}{fit} to each feet and leg. This will be done in four steps:
+\CDOK{To do so}{Moreover}, a \CDOK{parametric}{} model will be \CDOK{fitted}{fit} to each feet and leg. This will be done in four steps:
 \begin{enumerate}
-	\item The first step consists in removing from Kinect \CD{depth maps}{images} the points associated to the ground and those associated to the rollator,
+	\item The first step consists in removing from Kinect \CDOK{depth maps}{images} the points associated to the ground and those associated to the rollator,
 	\item The second step consists in making a first segmentation of the feet and legs thanks to a model based method. The model used corresponds to a cylinder (legs) and a plane (feet)
 	\item The third step consists in optimizing the former segmentation and the model parameters by optimizing both legs and feet model simultaneously, eg. by taking into account the fact that the two legs have the same diameter.
 	\item Finally, the last step consists in transforming the former 2 body model introduced before. This model will be used as measurements in a Kalman filter (see section~\ref{sec:Kalman}).
@@ -169,7 +169,7 @@ We propose to describe these four steps in the following paragraphs.
 
 \subsection{Ground and walker segmentation}
 \label{subsec:GroundWalkerSeg}
-In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. An other solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm. \CD{The orientation of the kinect with regards to the ground plane can be used to compute the position of the point in a frame align with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
+In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. An other solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm. \CDOK{The orientation of the Kinect with regards to the ground plane can be used to compute the position of the point in a frame aligned with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
 
 The rollator does not move with respect to the Kinect sensor and so is static in the Kinect frame. It can be removed from the depth map by using a predefined mask.
 
@@ -178,7 +178,7 @@ In the following, we defined by $\Omega$ the set of the points which do not belo
 
 \subsection{Feet and legs segmentation}
 
-The main idea of feet and legs segmentation is based on region growing. It is inspired by \TODO{\cite{aaa}}. \CD{The segmentation is perform directly in a 2D image that corresponds to the depth map (using directly the depth map instead of the 3D point cloud significantly speed up the process)}{}. From \CD{an initial}{a current} set of points \CD{belonging to}{of} a member, we look for potential candidates in the neighbouring\CD{. Then, according to some distance \textit{criteria} we decide to keep or discard them. \\}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
+The main idea of feet and legs segmentation is based on region growing. It is inspired by \TODO{\cite{aaa}}. \CDOK{The segmentation is performed directly in a 2D image that corresponds to the depth map (using directly the depth map instead of the 3D point cloud significantly speed up the process)}{}. From \CDOK{an initial}{a current} set of points \CDOK{belonging to}{of} a member, we look for potential candidates in the neighboring\CDOK{. Then, according to some distance \textit{criteria} we decide to keep or discard them. \\}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
 
 \subsubsection{General algorithm}~\\
 \label{subsub:generalAlgo}
@@ -190,7 +190,7 @@ The general algorithm for member segmentation is presented here:
 		\mathcal{N} = \{\mathbf{n}\notin\mathcal{M}\ |\ \exists \mathbf{m}\in\mathcal{M}, \|\mathbf{n} - \mathbf{m}\| \leq s \}
 		\label{eq:defV}
 	\end{equation}
-	where $s$ is a threshold \CD{arbitrarily defined, \textit{e.g.} 8-10 pixel in the depth map }{to define (8-10 pixels)}. Note that in \eqref{eq:defV} $\mathbf{m}$ and $\mathbf{v}$ are not 3D points but pixels in Kinect \CD{depth map}{image}.
+	where $s$ is a threshold \CDOK{arbitrarily defined, \textit{e.g.} 8-10 pixel in the depth map }{to define (8-10 pixels)}. Note that in \eqref{eq:defV} $\mathbf{m}$ and $\mathbf{v}$ are not 3D points but pixels in Kinect \CDOK{depth map}{image}.
 	\item $\mathcal{N}$ represents the set of new potential candidates. We remove from this set all the points that belongs to the ground or to the walker. Moreover, the points that do not match enough with the current model defined by $\mathbf{p}$ are also removed. Thus, the final candidates are defined by:
 	\begin{equation}
 		\mathcal{N}' = \{\mathbf{n}\in\mathcal{N}\ |\ \mathrm{dist(\mathbf{n},\mathbf{p})}\leq s^{pts}\}\cap\Omega
@@ -229,7 +229,7 @@ The general algorithm for member segmentation is presented here:
 \label{paragraph:paramCylindre}
 To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder.  Let $\mathbf{m}$ be a Kinect image point whose distance to the cylinder of parameters $\mathbf{p}$ has to be evaluated. It is computed with the following steps:
 \begin{enumerate}
-	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CD{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. \CD{We can define the rotation matrix $\mathbf{R} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{w}\end{bmatrix}$ associated to the cylinder orientation.}{The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
+	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CDOK{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. \CDOK{We can define the rotation matrix $\mathbf{R} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{w}\end{bmatrix}$ associated to the cylinder orientation.}{The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
 	\begin{equation}
 		\mathbf{R} = 
 		\begin{bmatrix}
@@ -524,13 +524,14 @@ These parameters provide very useful information about the walk. For example, it
 
 \subsection{Results analysis}
 
-Fig.~\ref{fig:footError} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was However, are still globally consistent and can be used to detect anomalies in the angle feet (see fig.~\ref{}).
+Fig.~\ref{fig:footError} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was observable, thus adding a bias in the estimation. However, the results are still globally consistent and can be used to detect anomalies in the angle feet.
 
-The ankle angle estimation is also consistent (fig.~\ref{}) even if it is a bit less precise than the feet elevation angles. 
+The ankle angle estimation is also consistent (fig.~\ref{fig:errorAnkle}) even if it is a bit less precise than the feet elevation angles. 
 
-Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordinate of the heel computed by our model. However, we know that these two points are not exactly and that the point associated to the heel in our model is higher. To test the consistency of our model, we test if the real heel is in the axis defined by our model (fig~\ref{ }). Then, the distance between the two points should be constant.
+Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordinate of the heel computed by our model. However, we know that these two points are not exactly and that the point associated to the heel in our model is higher. To test the consistency of our model, we test if the real heel is in the axis defined by our model (fig~\ref{fig:heelError}). Then, the distance between the two points should be constant.
 
 %Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
+
 
 \begin{figure}
 	\centering
@@ -538,6 +539,30 @@ Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordina
 	\caption{Orientation errors for the feet}
 	\label{fig:footError}
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{images/errorAnkle}
+	\caption{Error on ankle angle estimation}
+	\label{fig:errorAnkle}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{images/heelError}
+	\caption{Difference between real heel position and estimation}
+	\label{fig:heelError}
+\end{figure}
+
+
+% Figure supprimée
+%%%\begin{figure}
+%%%	\centering
+%%%	\includegraphics[width=0.45\textwidth]{images/exProfile2}
+%%%	\caption{$z$ trajectory of the toes and ``heels'' estimated by the algorithm}
+%%%	\label{fig:exProfile}
+%%%\end{figure}
+\section{Conclusion}
 
 \section{Conclusion}
 
