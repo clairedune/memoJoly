@@ -525,13 +525,15 @@ These parameters provide very useful information about the walk. For example, it
 Unfortunatelly, the data collected do not correspond to a full legnth cycle walk. This is due to problem of visibility of the whole leg in the Kinect frame: our Kinect was a bit to close of the member and there was a problem of angle of view. The first problem will be corrected in the future by using a Prime sense\footnote{An other constructor of Kinect-like sensor who sells a small-range certified version of the sensor.} adapted for close measurements. The second problem will be corrected by slightly modifying the viewing angle of the sensor. To these reasons, the following results can only be considered as \textbf{preliminary results}. 
 
 \subsection{Results analysis}
-Fig.~\ref{} and \ref{} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. Moreover, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
+Fig.~\ref{} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. 
 
 Concerning the bearing angles, the results are less precise. However, the results are globally consistent and can be used to detect anomalies in the angle feet (see fig.~\ref{}).
 
 The ankle angle estimation is also consistent (fig.~\ref{}) even if it is a bit less precise than the feet elevation angles. 
 
 Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordinate of the heel computed by our model. However, we know that these two points are not exactly and that the point associated to the heel in our model is higher. To test the consistency of our model, we test if the real heel is in the axis defined by our model (fig~\ref{ }). Then, the distance between the two points should be constant.
+
+%Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
 
 \begin{figure}
 	\centering
@@ -556,7 +558,7 @@ Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordina
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/exProfile}
+	\includegraphics[width=0.45\textwidth]{images/exProfile2}
 	\caption{$z$ trajectory of the toes and ``heels'' estimated by the algorithm}
 	\label{fig:exProfile}
 \end{figure}
