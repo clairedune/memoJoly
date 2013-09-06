@@ -60,13 +60,13 @@ Handibio, EA4322 Université du Sud- Toulon Var, France.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. Advances in robotics make it possible to turn a standard assistance device into an augmented device that may enrich the existing tests with new sets of daily measured criteria. In this paper we use a standart 4 wheeled rollator, equipped with a kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to measure and estimate legs and feet position during an assisted walk. The results are compared with motion capture data, as a ground truth. Preliminary results obtained on four healthy persons show that relevant data can be extracted for gait analysis. Some criteria are accurate with regards to the ground truth, eg. foot orientation and ankle angle.
+Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. Advances in robotics make it possible to turn a standard assistance device into an augmented device that may enrich the existing tests with new sets of daily measured criteria. In this paper we use a standard 4 wheeled rollator, equipped with a Kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to measure and estimate legs and feet position during an assisted walk. The results are compared with motion capture data, as a ground truth. Preliminary results obtained on four healthy persons show that relevant data can be extracted for gait analysis. Some criteria are accurate with regards to the ground truth, eg. foot orientation and ankle angle.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
- Ageing in society is a worldwide issue that especially impacts northern countries. In France, due to the high care cost and to the limited number of rooms in care institution, the solution that has been chosen by care-givers, frail people and their family is to maintain elderly at home the longest and in the best conditions by giving them an\textit{ adapted assistance}.  \\
+Ageing in society is a worldwide issue that especially impacts northern countries. In France, due to the high care cost and to the limited number of rooms in care institution, the solution that has been chosen by care-givers, frail people and their family is to maintain elderly at home the longest and in the best conditions by giving them an\textit{ adapted assistance}.  \\
 
 Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. This evaluation is usually performed once and for all by filling standard forms with macro-information about standing and walking abilities, e.g. by measuring the time taken to walk $10m$. Advances in robotics make it possible to enhance a standard assistance device by adding sensors and actuators. The existing tests could  then be enriched by adding a new set of daily measured criteria derived from the daily use of standard assistance devices. This monitoring will allow to evaluate gait in ambulatory conditions, to measure the evolution of some pathologies, to refine diagnostics and to distinguish autonomy levels. The assistance device is not meant to be an alternative for clinical frailty observation but rather as a complementary tool that gives field information. The data acquired \textit{online} could also be used to control a robotics walker in order to prevent a fall. These new characteristics can extend the use of walkers to more diverse population. \\ 
 
@@ -549,7 +549,11 @@ Finally, we wanted to see if our model was able to detect when the heel is on th
 \end{figure}
 
 \section{Conclusion}
-We proposed in this paper an original system 
+We proposed in this paper an original system able to track the feet and legs position during an assisted walk without equipping the user. We did it by using Kinect sensor and an original algorithm which uses the depth map to produce an informative model. Preliminary results are proposed and shows the feasibility of the method since we were able to compute parameters consistent with the ones provided by the motion capture. This represents very promising results in order to design a system 
+
+However, the actual set up was unable to capture the data during all the phases of a step walk. This is due both to the range of the sensor which is not able to deals with very close data and its orientation on the system. In the future, we will solve these problems by modifying slightly the position of the sensor and using a Kinect-like sensor able to deal precisely with small ranges. Then, our algorithm will be extensively tested.
+
+Finally, the last perspective of this work is the inclusion of odometry data. By using the data provided by our model and the odometry, interesting additional parameters about the walk may be computed and analyzed. Future work will consist in testing such approach.
 
 \bibliographystyle{IEEEtran} 
 \bibliography{biblio.bib}
