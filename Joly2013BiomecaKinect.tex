@@ -505,15 +505,16 @@ where $\mathbf{P_i}_k^{pred}$ is the covariance associated to the prediction of 
 
 This algorithm allows us to detect and reject spurious values computed by the segmentation algorithm. For example, if the fitting strongly fails and converge to a time-inconsistent value, the Kalman filtering with outlier rejection is able to reject it.
 \section{Results}
+This section presents preliminary results obtained on four young and healthy persons by observing their gait using our smart walker.
 
-\subsection{Presentation of the experiment}
+\subsection{Experimental set up}
 Our rollator with Kinect was tested with a person walking during two cycles of walk. A ground truth is provided by the motion capture sensor. We propose in this experiment to compute the evolution of several parameters during the walk:
 \begin{itemize}
 	\item The feet angles in the Kinect frame
 	\item The angle between one foot and the associated leg
 	\item The height of the heel
 \end{itemize}
-These parameters provide very useful information about the walk. For example, it is possible to know if the cycle is standard or not. By combining these information with the odometry, it is possible to make statistics about the length of the steps (out of the scope of this paper).
+These parameters provide very useful information about the walk. For example, it is possible to know if the cycle is standard or not. %By combining these information with the odometry, it is possible to make statistics about the length of the steps (out of the scope of this paper).
 
 \subsection{Results analysis}
 
