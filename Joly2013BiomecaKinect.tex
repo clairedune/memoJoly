@@ -139,21 +139,21 @@ Our system is made \CD{of}{by} a standard \CD{4 wheeled rollator}{walker} \CD{eq
 \end{itemize}
 
 
-In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width will be done by fusing the results of this paper with odometry (out of scope here). \CD{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
+In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width may be done by fusing the results of this paper with odometry (out of scope here). \CD{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
 
 
 
 \section{Algorithm for Kinect processing}
 \label{sec:Algorithm}
 
-The algorithm to process Kinect images is presented in this section. The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{}) in two part (left and right) which are composed by:
+The algorithm to process Kinect images is presented in this section. \CD{The method aims at fitting a 3D skeleton on the partial kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the heel
 	\item a second segment which has a predefined length starting from the heel in the direction of the leg
 \end{itemize}
-Moreover, a model will be fit to each feet and leg. This will be done in four steps:
+\CD{To do so}{Moreover}, a \CD{parametric}{} model will be \CD{fitted}{fit} to each feet and leg. This will be done in four steps:
 \begin{enumerate}
-	\item The first step consists in removing from Kinect images the points associated to the ground and the rollator,
+	\item The first step consists in removing from Kinect \CD{depth maps}{images} the points associated to the ground and the rollator,
 	\item The second step consists in making a first segmentation of the feet and legs thanks to a model based method. The model used corresponds to a cylinder (legs) and a plane (feet)
 	\item The third step consists in optimizing the former segmentation and the model parameters,
 	\item Finally, the last step consists in transforming the former 2 segments model introduced before. This model will be used as measurements in a Kalman filter (see section~\ref{sec:Kalman}).
