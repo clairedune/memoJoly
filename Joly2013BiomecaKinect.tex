@@ -37,7 +37,7 @@
 
 
 \DeclareMathOperator{\e}{e}
-\title{\LARGE \bf Feet and legs tracking using a smart rollator
+\title{\LARGE \bf Feet and legs tracking using a smart rollator equipped with a Kinect sensor
  }
 
 \author{
@@ -60,7 +60,7 @@ Handibio, EA4322 Université du Sud- Toulon Var, France.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. Advances in robotics make it possible to turn a standard assistance device into an augmented device that may enrich the existing tests with new sets of daily measured criteria. In this paper we use a standart 4 wheeled rollator, equipped with a kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to measure and estimate legs and feet position during an assisted walk. The results are compared with motion capture data, as a ground truth. Preliminary results obtained on four healthy persons show that relevant data can be extracted for gait analysis. Some criteria are accurate with regards to the ground truth, eg. heel elevation and ankle angle.
+Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. Advances in robotics make it possible to turn a standard assistance device into an augmented device that may enrich the existing tests with new sets of daily measured criteria. In this paper we use a standart 4 wheeled rollator, equipped with a kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to measure and estimate legs and feet position during an assisted walk. The results are compared with motion capture data, as a ground truth. Preliminary results obtained on four healthy persons show that relevant data can be extracted for gait analysis. Some criteria are accurate with regards to the ground truth, eg. foot orientation and ankle angle.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -170,7 +170,7 @@ In the following, we defined by $\Omega$ the set of points which do belong neith
 
 \subsection{Feet and legs segmentation}
 
-The main idea of feet and legs segmentation is based on region growing. It is inspired by \cite{aaa}. \CDOK{The segmentation is performed directly in the depth map \footnote{using directly the depth map instead of the 3D point cloud significantly speed up the process}}{}. From \CDOK{an initial}{a current} set of points \CDOK{belonging to}{of} a member, we look for potential candidates in the neighboring\CDOK{. Then, according to some distance \textit{criteria} we decide to keep or discard them. \\}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
+The main idea of feet and legs segmentation is based on region growing. It is inspired by \cite{Leonardis97}. \CDOK{The segmentation is performed directly in the depth map \footnote{using directly the depth map instead of the 3D point cloud significantly speed up the process}}{}. From \CDOK{an initial}{a current} set of points \CDOK{belonging to}{of} a member, we look for potential candidates in the neighboring\CDOK{. Then, according to some distance \textit{criteria} we decide to keep or discard them. \\}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
 
 \subsubsection{General algorithm}~\\
 \label{subsub:generalAlgo}
@@ -301,7 +301,7 @@ In~\eqref{eq:defEstCyl2}, the minimum is computed with the Levenberg-Marquardt m
 	\item $a$ is initialized to 0.05m.
 \end{enumerate}
 \begin{rem}
-In \eqref{eq:defEstCyl1} and \eqref{eq:defEstCyl2}, $(1+\e^{-a})^{-1}$ is used to penalize solutions with a large radius. Since the 3D points cloud associated to the legs corresponds only to a partial cylinder (around 30deg), the radius is not easily observable and the function to minimize tends to be ``plate''. Introducing $(1+\e^{-a})^{-1}$ yields in slightly favoring cylinder with smaller radius. Moreover, it can be obserbed that $(1+\e^{-a})^{-1}$ is always between $1$ and $1/2$ and can not have a strong influence on the final result or make converge the final result to a radius close to zero.\footnote{This is not be the case with a factor such as $\sqrt{a}$ like in \cite{lala}.}
+In \eqref{eq:defEstCyl1} and \eqref{eq:defEstCyl2}, $(1+\e^{-a})^{-1}$ is used to penalize solutions with a large radius. Since the 3D points cloud associated to the legs corresponds only to a partial cylinder (around 30deg), the radius is not easily observable and the function to minimize tends to be ``plate''. Introducing $(1+\e^{-a})^{-1}$ yields in slightly favoring cylinder with smaller radius. Moreover, it can be obserbed that $(1+\e^{-a})^{-1}$ is always between $1$ and $1/2$ and can not have a strong influence on the final result or make converge the final result to a radius close to zero.\footnote{This is not be the case with a factor such as $\sqrt{a}$ like in \cite{Leonardis97}.}
 \end{rem}
 \subsubsection{Foot segmentation}~\\
 \label{subsub:footSegmentation}
@@ -378,22 +378,22 @@ where  $\mathbf{vp}(\mathbf{X},i)$ stands for the normalized eigen vector associ
 The method that is used to segment the feet and the legs needs to provide an initial set of image points for each member. This is done by the following steps and illustrated on Fig.~\ref{fig:segmentation}~:
 \begin{enumerate}
 	\item Firstly, it can be noticed that after removing the ground and the rollator from the Kinect image, there are two ``big'' sets of points that can be easily segmented and corresponding to the left and right member (Fig.~\ref{subfig:seg1}). If there are other small sets due to noise, they can thus be discarded.
-	\item Then each part contains both the foot and the leg. Because of the geometry of the system, \CD{legs and feet allways lie in two distinct image areas}{ the bottom part corresponds systematically to the leg. Thus, we chose to initialize the leg with the last bottom quarter and the foot with the first bottom quarter}  (Fig.~\ref{subfig:seg2})
+	\item Then each part contains both the foot and the leg. Because of the geometry of the system, \CDOK{legs and feet always lie in two distinct image areas}{ the bottom part corresponds systematically to the leg. Thus, we chose to initialize the leg with the last bottom quarter and the foot with the first bottom quarter}  (Fig.~\ref{subfig:seg2})
 	\item Finally, the algorithm makes grow these sets, thus computing the final segmentation (Fig.~\ref{subfig:seg3}).
 \end{enumerate}
 \begin{figure*}
 	\centering
 	\subfloat[][After ground and rollator segmentation]{\label{subfig:seg1}\includegraphics[width=0.32\textwidth]{images/seg0}}\hfill
-	\subfloat[][At initialization)]{\label{subfig:seg2}\includegraphics[width=0.32\textwidth]{images/segIni}} \hfill
-	\subfloat[][Final result)]{\label{subfig:seg3}\includegraphics[width=0.32\textwidth]{images/segEnd}}
+	\subfloat[][At initialization]{\label{subfig:seg2}\includegraphics[width=0.32\textwidth]{images/segIni}} \hfill
+	\subfloat[][Final result]{\label{subfig:seg3}\includegraphics[width=0.32\textwidth]{images/segEnd}}
 	\caption{Steps of segmentation}
 	\label{fig:segmentation}
 \end{figure*}
 
 \subsection{Model optimization}
-After the segmentation step, a model has been computed for each member. We propose now to optimize these parameters.
-
-\subsubsection{Legs}~\\
+After the segmentation step, a model has been computed for each member. We propose now to optimize the legs parameters.
+%
+%\subsubsection{Legs}~\\
 In the following, the two legs will be {optimized simultaneously}. During the segmentation step, they were optimized independently. So, it was guaranteed that both legs have the same radius. At this step, we propose to estimate both parameters from the 3D points extracted from the segmentation with the constraints that they have the same radius. So, we define a new vector to optimize:
 \begin{equation}
 	\mathbf{p_{legs}} = 
@@ -408,8 +408,8 @@ where:
 \end{itemize}
 Thus, the whole points are fitted in the same optimization process (of course, each point is labeled with its own leg). The methods is roughly the same that during segmentation. Nevertheless, it is interesting to note that the new Jacobian matrix has a block structure with two zero blocks.
 
-\subsubsection{Feet}~\\
-Finally, the sets associated to the feet are optimized by using stronger thresholds in order to remove outliers.
+%\subsubsection{Feet}~\\
+%Finally, the sets associated to the feet are optimized by using stronger thresholds in order to remove outliers.
 
 \subsection{Final parameters}
 The final step consists in transforming the legs and feet parameters into a bone representation. For each side, we have:
@@ -501,7 +501,7 @@ Finally, the Kalman  prediction can be applied to outlier rejection. The idea is
 	\right)
 	\label{eq:mahal}
 \end{equation}
-where $\mathbf{P_i}_k^{pred}$ is the covariance associated to the prediction of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{pred}$) and $\mathbf{R_i}^{meas}$ is the covariance matrix associated to the measurement of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{meas}$). The value computed in~\ref{eq:mahal} is computed to a threshold computed thanks to $\chi^2$ distribution. The measurement is rejected if the value is above the threshold. 
+where $\mathbf{P_i}_k^{pred}$ is the covariance associated to the prediction of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{pred}$) and $\mathbf{R_i}^{meas}$ is the covariance matrix associated to the measurement of $\mathbf{X_i}_k$ (i.e. $\mathbf{X_i}_k^{meas}$). The value computed in~\ref{eq:mahal} is compared to a threshold computed thanks to $\chi^2$ distribution. The measurement is rejected if the value is above the threshold. 
 
 This algorithm allows us to detect and reject spurious values computed by the segmentation algorithm. For example, if the fitting strongly fails and converge to a time-inconsistent value, the Kalman filtering with outlier rejection is able to reject it.
 \section{Results}
@@ -511,18 +511,18 @@ This section presents preliminary results obtained on four young and healthy per
 Our rollator with Kinect was tested with a person walking during two cycles of walk. A ground truth is provided by the motion capture sensor. We propose in this experiment to compute the evolution of several parameters during the walk:
 \begin{itemize}
 	\item The feet angles in the Kinect frame
-	\item The angle between one foot and the associated leg
-	\item The height of the heel
+	\item The angle of ankle articulation
+	\item The height of the ankle
 \end{itemize}
 These parameters provide very useful information about the walk. For example, it is possible to know if the cycle is standard or not. %By combining these information with the odometry, it is possible to make statistics about the length of the steps (out of the scope of this paper).
 
 \subsection{Results analysis}
 
-Fig.~\ref{fig:footError} show the results of error in orientation of the feet. It can be seen that the elevation angle (computed with respect to the ground) is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was observable, thus adding a bias in the estimation. However, the results are still globally consistent and can be used to detect anomalies in the angle feet.
+Fig.~\ref{fig:footError} shows the results of error in orientation of the feet. We decided to look at the orientation of the feet in the horizontal plane (bearing angle) and the orientation of the angle that makes the feet with respect to this plane (elevation angle). It can be seen that the elevation angle is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not (jointly with the toe estimation). The empty parts where there is no results correspond to the case were the member was not correctly seen in the Kinect image. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was observable, thus adding a bias in the estimation. However, the results are still globally consistent and can be used to detect anomalies in the angle feet.
 
 The ankle angle estimation is also consistent (fig.~\ref{fig:errorAnkle}) even if it is a bit less precise than the feet elevation angles. 
 
-Finally, we wanted to see if our model was able to when the heel is on the ground or not. We did it by comparing the $z$ coordinate of the ball joint of our model (which is a bit higher than the ankle) with the $z$ coordinate of the ankle. We do not look for exact results but a kind of correlation. Results are shown on fig.~\ref{fig:zAnkle}. Unfortunately, the Kinect data were available when the heels were not on the ground. However, it appears that the difference between the Kinect data (when available) and the ground truth are almost constant in comparison with the amplitude of the variation when there is a large motion. As a consequence, we guess that the error in estimation will not be important with respect to the amplitude of the variations. So, detecting if a foot is on the ground or not seems possible.
+Finally, we wanted to see if our model was able to detect when the heel is on the ground or not. We did it by comparing the $z$ coordinate of the ball joint of our model (which is a bit higher than the ankle) with the $z$ coordinate of the ankle (with this $z$ ankle coordinate, it is easy to know if the heel is on the ground or not). We do not look for exact results but a kind of correlation. Results are shown on fig.~\ref{fig:zAnkle}. Unfortunately, the Kinect data were available when the heels were not on the ground. However, it appears that the difference between the Kinect data (when available) and the ground truth is almost constant in comparison with the amplitude of the variation when there is a large motion. As a consequence, we guess that errors may not impact the detection the detection of the heel ``state'' (on the ground or not).
 
 %Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
 
@@ -548,16 +548,8 @@ Finally, we wanted to see if our model was able to when the heel is on the groun
 	\label{fig:zAnkle}
 \end{figure}
 
-
-% Figure supprimée
-%%%\begin{figure}
-%%%	\centering
-%%%	\includegraphics[width=0.45\textwidth]{images/exProfile2}
-%%%	\caption{$z$ trajectory of the toes and ``heels'' estimated by the algorithm}
-%%%	\label{fig:exProfile}
-%%%\end{figure}
 \section{Conclusion}
-
+We proposed in this paper an original system 
 
 \bibliographystyle{IEEEtran} 
 \bibliography{biblio.bib}
