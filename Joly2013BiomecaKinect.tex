@@ -60,7 +60,7 @@ Handibio, EA4322 Université du Sud- Toulon Var, France.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. This evaluation is usually performed once and for all by filling standard forms with macro-information about standing and walking abilities. Advances in robotics make it possible to turn a standard assistance device into an augmented device. The existing tests could then be enriched by a new set of daily measured criteria derived from the daily use of standard assistance devices. In this paper we use a smart rollator, equipped with a kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to track the legs and feet position during walking. \TODO{a completer}
+Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. Advances in robotics make it possible to turn a standard assistance device into an augmented device that may enrich the existing tests with new sets of daily measured criteria. In this paper we use a standart 4 wheeled rollator, equipped with a kinect and odometers, for biomechanical gait analysis. This paper focuses on the method we develop to measure and estimate legs and feet position during an assisted walk. The results are compared with motion capture data, as a ground truth. Preliminary results obtained on four healthy persons show that relevant data can be extracted for gait analysis. Some criteria are accurate with regards to the ground truth, eg. heel elevation and ankle angle.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -112,15 +112,7 @@ In~\cite{Taghvaei10}, The RT Walker is equipped with vision sensor to classify t
 %Walking assistance based on user intend allows to control the direction of the walker. Fall prevention algorithm tend to draw the boundaries between "normal situations" and "risk of fall". Most of the time, the control strategy consists in braking to stop the system.
 \subsection{Our smart rollator}
 
-In this paper, the system aims at tracking some specific parameters for biomechanical gait analysis, that were chosen in \cite{Dune12}: 
-\begin{itemize}
-\item step length
-\item step width
-\item step frequency
-\item feet orientation
-\item heel trajectory
-\item ankle angle trajectory
-\end{itemize}
+In this paper, the system aims at tracking some specific parameters for biomechanical gait analysis, that were chosen in \cite{Dune12} : step length, step width, step frequency, feet orientation, heel trajectory and ankle angle trajectory.
 
 \begin{figure}[h]
 	\centering
@@ -139,7 +131,7 @@ Our system is made \CDOK{of}{by} a standard \CDOK{4 wheeled rollator}{walker} \C
 \end{itemize}
 
 
-In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width may be done by fusing the results of this paper with odometry (out of scope here). \CDOK{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
+In this paper, we focus on the estimation of leg and feet poses in a frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width may be done by fusing the results of this paper with odometry (out of scope here). \CDOK{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
 
 
 
