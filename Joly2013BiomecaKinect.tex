@@ -30,7 +30,8 @@
 
 \newcommand{\TODO}[1]{\textcolor{green}{TODO : #1}} %pour lister ce qu'il reste à faire
 \newcommand{\CD}[2]{\textcolor{red}{#1}} %pour modifier un paragraph
-\newcommand{\CDKO}[2]{\textcolor{blue}{#2}} %pour liste ce qu'il reste à faire
+\newcommand{\CDKO}[2]{\textcolor{blue}{#2}} %pour revenir au texte precedent
+\newcommand{\CDOK}[2]{{#1}} %pour valider la modif
 
 \newtheorem{rem}{Remark}
 
@@ -129,16 +130,16 @@ In this paper, the system aims at tracking some specific parameters for biomecha
 \end{figure}
 
 
-Our system is made \CD{of}{by} a standard walker \CD{equipped with sensors}{on which some equipment was installed} (fig.~\ref{fig:ourrollator}):
+Our system is made \CD{of}{by} a standard \CD{4 wheeled rollator}{walker} \CD{equipped with sensors}{on which some equipment was installed} (fig.~\ref{fig:ourrollator}):
 \begin{itemize}
 	\item The Kinect sensor which is viewing the feet of the person.
-	\item Odometers were mounted on the rear wheels to estimate the trajectory of the walker.
-	\item A laptop was installed to grab the sensor data
-	\item Finally, motion capture\footnote{A Qualysis system was used.} markers were installed in order to compute the ground truth. 
+	\item Odometers \CD{are}{were} mounted on the rear wheels to estimate the trajectory of the walker.
+	\item A laptop \CD{is}{was} installed to grab the sensor data
+	\item Finally, motion capture\footnote{A Qualysis system is used.} markers \CD{are}{were} installed in order to compute the ground truth. 
 \end{itemize}
 
 
-In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length, width or frequency will be done by fusing the results of this paper with odometry (out of scope here).
+In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length and width will be done by fusing the results of this paper with odometry (out of scope here). \CD{This could be done by integrating the robot motion to computes its pose in a fixed reference frame. Then, the current feet pose could be directly expressed in this fixed reference frame to compute the step length and width.}{}
 
 
 
