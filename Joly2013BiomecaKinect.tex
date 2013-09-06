@@ -112,7 +112,7 @@ In~\cite{Taghvaei10}, The RT Walker is equipped with vision sensor to classify t
 %Walking assistance based on user intend allows to control the direction of the walker. Fall prevention algorithm tend to draw the boundaries between "normal situations" and "risk of fall". Most of the time, the control strategy consists in braking to stop the system.
 \subsection{Our smart rollator}
 
-In this paper, the system aims at tracking some specific parameters for biomechanical gait analysis, that were chosen in \cite{Dune2012}: 
+In this paper, the system aims at tracking some specific parameters for biomechanical gait analysis, that were chosen in \cite{Dune12}: 
 \begin{itemize}
 \item step length
 \item step width
@@ -171,18 +171,18 @@ We propose to describe these four steps in the following paragraphs.
 \label{subsec:GroundWalkerSeg}
 In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. An other solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm. \CD{The orientation of the kinect with regards to the ground plane can be used to compute the position of the point in a frame align with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
 
-The rollator does not move with respect to the Kinect and so is static in the Kinect camera frame. It can be removed from the depth map by using a predefined mask.
+The rollator does not move with respect to the Kinect sensor and so is static in the Kinect frame. It can be removed from the depth map by using a predefined mask.
 
 In the following, we defined by $\Omega$ the set of the points which do not belong neither to the ground nor to the rollator. 
 
 
 \subsection{Feet and legs segmentation}
 
-The main idea of feet and legs segmentation is based on region growing and inspired by \cite{aaa}. From a current set of points of a member, we look for potential candidates in the neighbouring and then validate it or not. The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented (paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}).
+The main idea of feet and legs segmentation is based on region growing. It is inspired by \TODO{\cite{aaa}}. \CD{The segmentation is perform directly in a 2D image that corresponds to the depth map (using directly the depth map instead of the 3D point cloud significantly speed up the process)}{}. From \CD{an initial}{a current} set of points \CD{belonging to}{of} a member, we look for potential candidates in the neighbouring\CD{. Then, according to some distance \textit{criteria} we decide to keep or discard them. \\}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
 
 \subsubsection{General algorithm}~\\
 \label{subsub:generalAlgo}
-The general algorithm for member (a foot or a leg) segmentation is presented here:
+The general algorithm for member segmentation is presented here:
 \begin{enumerate}
 	\item Let $\mathcal{M}$ be the set of the current image points belonging to the member and $\mathbf{p}$ a \textbf{set of parameters} associated to it
 	\item Let $\mathcal{N}$ be the set of neighbours associated to $\mathcal{M}$:
@@ -190,12 +190,12 @@ The general algorithm for member (a foot or a leg) segmentation is presented her
 		\mathcal{N} = \{\mathbf{n}\notin\mathcal{M}\ |\ \exists \mathbf{m}\in\mathcal{M}, \|\mathbf{n} - \mathbf{m}\| \leq s \}
 		\label{eq:defV}
 	\end{equation}
-	where $s$ is a threshold to define (8-10 pixels). Note that in \eqref{eq:defV} $\mathbf{m}$ and $\mathbf{v}$ are not 3D points but pixels in Kinect image.
+	where $s$ is a threshold \CD{arbitrarily defined, \textit{e.g.} 8-10 pixel in the depth map }{to define (8-10 pixels)}. Note that in \eqref{eq:defV} $\mathbf{m}$ and $\mathbf{v}$ are not 3D points but pixels in Kinect \CD{depth map}{image}.
 	\item $\mathcal{N}$ represents the set of new potential candidates. We remove from this set all the points that belongs to the ground or to the walker. Moreover, the points that do not match enough with the current model defined by $\mathbf{p}$ are also removed. Thus, the final candidates are defined by:
 	\begin{equation}
 		\mathcal{N}' = \{\mathbf{n}\in\mathcal{N}\ |\ \mathrm{dist(\mathbf{n},\mathbf{p})}\leq s^{pts}\}\cap\Omega
 	\end{equation}
-	where $\mathrm{dist}$ is the function which gives the distance of a point (first argument) to a model (second argument), $s^{pts}$ a threshold and $\Omega$ the set defined in \ref{subsec:GroundWalkerSeg}.
+	where $\mathrm{dist}$ is the function which gives the distance of a point ($\mathbf{n}$) to a model ($\mathbf{p}$), $s^{pts}$ a threshold and $\Omega$ the set defined in \ref{subsec:GroundWalkerSeg}.
 	\item 2 cases can be distinguished:
 	\begin{enumerate}
 		\item $\mathcal{N}'=\emptyset$: there is not any new candidate. The set of points associated to the member is complete. The set $\mathcal{M}$ and the last set of parameters computed $\mathbf{p}$ are returned.
@@ -224,17 +224,18 @@ The general algorithm for member (a foot or a leg) segmentation is presented her
 \subsubsection{Leg segmentation}~\\
 \label{subsub:legSegmentation}
 
+
 \paragraph{Model and definition of $\mathrm{dist}$ function}~\\
 \label{paragraph:paramCylindre}
 To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder.  Let $\mathbf{m}$ be a Kinect image point whose distance to the cylinder of parameters $\mathbf{p}$ has to be evaluated. It is computed with the following steps:
 \begin{enumerate}
-	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthnormal base with $\mathbf{w}$ in the same direction than the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
+	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CD{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. \CD{We can define the rotation matrix $\mathbf{R} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{w}\end{bmatrix}$ associated to the cylinder orientation.}{The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
 	\begin{equation}
 		\mathbf{R} = 
 		\begin{bmatrix}
 			\mathbf{u} & \mathbf{v} & \mathbf{w}
 		\end{bmatrix}
-	\end{equation}
+	\end{equation}}
 	\item Let $\mathbf{M}$ be the 3D point (in the Kinect frame) associated to $\mathbf{m}$ and $\mathbf{M}'$ the coordinates of $M$ in the frame defined by $(\mathbf{C},\mathcal{B})$:
 	\begin{equation}
 		\mathbf{M}' = \mathbf{R}\left(\mathbf{M}-\mathbf{C}\right)
@@ -433,7 +434,7 @@ An example of the results provided by the algorithm is provided on fig.~\ref{fig
 \begin{figure}
 	\centering
 	\includegraphics[width=0.45\textwidth]{images/exampleBones}
-	\caption{Example of result provided by the algorithm (black bones). The kinect data are plotted in yellow and the ground truth markers are in red.}
+	\caption{Example of result provided by the algorithm (black bones). The Kinect data are plotted in yellow and the ground truth markers are in red.}
 	\label{fig:exampleBones}
 \end{figure}
 
