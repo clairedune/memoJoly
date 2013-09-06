@@ -306,7 +306,7 @@ In \eqref{eq:defEstCyl1} and \eqref{eq:defEstCyl2}, $(1+\e^{-a})^{-1}$ is used t
 \subsubsection{Foot segmentation}~\\
 \label{subsub:footSegmentation}
 \paragraph{Model and definition of $\mathrm{dist}$ function}~\\
-For the feet, a planar model is used and is parameterized by its 4 equation parameters:
+For the feet, a planar model is used and is parameterized by its 4 parameters:
 \begin{equation}
 	\left\{
 	\begin{array}{l}
@@ -314,7 +314,7 @@ For the feet, a planar model is used and is parameterized by its 4 equation para
 		\begin{bmatrix}
 			a & b & c & d
 		\end{bmatrix}^T\\
-	\mbox{avec } |\mathbf{p}\| = 1 
+	\mbox{with } |\mathbf{p}\| = 1 
 	\end{array}
 	\right.
 \end{equation}
@@ -348,7 +348,7 @@ with:
 	\left\{
 		\begin{array}{l}
 			\mathcal{M} = \{\mathbf{m}_i,i\in[1\dots N]\}\\
-			\{\mathbf{M}_i,i\in[1\dots N]\}\mbox{the 3D points associated to }\mathcal{M}\\
+			\{\mathbf{M}_i,i\in[1\dots N]\}\mbox{ the 3D points associated to }\mathcal{M}\\
 			\forall i\in[1\dots N],\ \mathbf{M}_i = \begin{bmatrix} x_i & y_i & z_i \end{bmatrix}^T
 		\end{array}
 	\right.
@@ -375,10 +375,10 @@ We have:
 where  $\mathbf{vp}(\mathbf{X},i)$ stands for the normalized eigen vector associated to the i-th  eigen value of $\mathbf{X}$ (In~\eqref{eq:defEstPlan3}, it corresponds to the smallest eigen value).
 
 \subsubsection{Initialization of the set}~\\
-The global method proposed to segment the feet and the legs needs to provide an initial set of image points for each member. This is done by the following steps and illustrated on Fig.~\ref{fig:segmentation}~:
+The method that is used to segment the feet and the legs needs to provide an initial set of image points for each member. This is done by the following steps and illustrated on Fig.~\ref{fig:segmentation}~:
 \begin{enumerate}
 	\item Firstly, it can be noticed that after removing the ground and the rollator from the Kinect image, there are two ``big'' sets of points that can be easily segmented and corresponding to the left and right member (Fig.~\ref{subfig:seg1}). If there are other small sets due to noise, they can thus be discarded.
-	\item Then each part contains both the foot and the leg. Because of the geometry of the system, the bottom part corresponds systematically to the leg. Thus, we chose to initialize the leg with the last bottom quarter and the foot with the first bottom quarter (Fig.~\ref{subfig:seg2})
+	\item Then each part contains both the foot and the leg. Because of the geometry of the system, \CD{legs and feet allways lie in two distinct image areas}{ the bottom part corresponds systematically to the leg. Thus, we chose to initialize the leg with the last bottom quarter and the foot with the first bottom quarter}  (Fig.~\ref{subfig:seg2})
 	\item Finally, the algorithm makes grow these sets, thus computing the final segmentation (Fig.~\ref{subfig:seg3}).
 \end{enumerate}
 \begin{figure*}
