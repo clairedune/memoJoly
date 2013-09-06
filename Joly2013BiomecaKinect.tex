@@ -161,18 +161,18 @@ The algorithm to process Kinect images is presented in this section. \CD{The met
 \end{itemize}
 \CD{To do so}{Moreover}, a \CD{parametric}{} model will be \CD{fitted}{fit} to each feet and leg. This will be done in four steps:
 \begin{enumerate}
-	\item The first step consists in removing from Kinect \CD{depth maps}{images} the points associated to the ground and the rollator,
+	\item The first step consists in removing from Kinect \CD{depth maps}{images} the points associated to the ground and those associated to the rollator,
 	\item The second step consists in making a first segmentation of the feet and legs thanks to a model based method. The model used corresponds to a cylinder (legs) and a plane (feet)
-	\item The third step consists in optimizing the former segmentation and the model parameters,
-	\item Finally, the last step consists in transforming the former 2 segments model introduced before. This model will be used as measurements in a Kalman filter (see section~\ref{sec:Kalman}).
+	\item The third step consists in optimizing the former segmentation and the model parameters by optimizing both legs and feet model simultaneously, eg. by taking into account the fact that the two legs have the same diameter.
+	\item Finally, the last step consists in transforming the former 2 body model introduced before. This model will be used as measurements in a Kalman filter (see section~\ref{sec:Kalman}).
 \end{enumerate}
 We propose to describe these four steps in the following paragraphs.
 
 \subsection{Ground and walker segmentation}
 \label{subsec:GroundWalkerSeg}
-In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be the same in all images. As a consequence it is possible to compute it once and to consider it as constant. An other solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm. Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world.
+In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. An other solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm. \CD{The orientation of the kinect with regards to the ground plane can be used to compute the position of the point in a frame align with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
 
-The rollator does not move with respect to the Kinect and so is static in the Kinect camera frame. It can be removed by using a predefined mask.
+The rollator does not move with respect to the Kinect and so is static in the Kinect camera frame. It can be removed from the depth map by using a predefined mask.
 
 In the following, we defined by $\Omega$ the set of the points which do not belong neither to the ground nor to the rollator. 
 
