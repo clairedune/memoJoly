@@ -6,4 +6,6 @@
 *.dvi
 *.log
 *.blg
+*.pdf
+*.out
 *.DS_Store
