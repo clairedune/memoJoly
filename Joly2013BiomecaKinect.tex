@@ -219,7 +219,8 @@ The general algorithm for member segmentation is presented here:
 
 \paragraph{Model and definition of $\mathrm{dist}$ function}~\\
 \label{paragraph:paramCylindre}
-To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder.  Let $\mathbf{m}$ be a Kinect image point whose distance to the cylinder of parameters $\mathbf{p}$ has to be evaluated. It is computed with the following steps:
+To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder. \\
+ Let $\mathbf{m}$ be a Kinect image point whose distance to the cylinder of parameters $\mathbf{p}$ has to be evaluated. It is computed with the following steps:
 \begin{enumerate}
 	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CDOK{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. \CDOK{We can define the rotation matrix $\mathbf{R} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{w}\end{bmatrix}$ associated to the cylinder orientation.}{The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
 	\begin{equation}
@@ -232,15 +233,15 @@ To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primi
 	\begin{equation}
 		\mathbf{M}' = \mathbf{R}\left(\mathbf{M}-\mathbf{C}\right)
 	\end{equation}
-	Finally, the distance to the cylinder is the difference between its radius (noted $a$ in the following) and the distance between $\mathbf{C}$ and the projection of $\mathbf{M}'$ in the plane $(\mathbf{C},\mathbf{u},\mathbf{v})$. With $\mathbf{M}'=[x\ y\ z]^T$, we have:
+	Finally, the distance to the cylinder is the difference between its radius ($a$ in the following) and the distance between $\mathbf{C}$ and the projection of $\mathbf{M}'$ in the plane $(\mathbf{C},\mathbf{u},\mathbf{v})$. With $\mathbf{M}'=[x\ y\ z]^T$, we have:
 	\begin{equation}
 		\mathrm{dist}(\mathbf{m},\mathbf{p}) = |\sqrt{x^2+y^2} - a|
 	\end{equation}
 	where $\mathbf{p}$ stands for the cylinder parameters (see paragraph~\ref{subsub:paramCylindre}) and are used to define $\mathbf{u}$, $\mathbf{v}$, $\mathbf{w}$, $\mathbf{R}$, $\mathbf{C}$ and $a$.
 \end{enumerate}
 
-\paragraph{Model parameterization}:~\\
-A cylinder can be defined by the rotation matrix $\mathbf{R}$,the point $\mathbf{C}$ and its radius $a$ which were introduced in the previous paragraph. A rotation matrix has 3 degrees of freedom and can be written has the multiplication of 3 matrices:
+\paragraph{Model parameterization}~\\
+A cylinder can be defined by the rotation matrix $\mathbf{R}$, the point $\mathbf{C}$ and its radius $a$ which were introduced in the previous paragraph. A rotation matrix has 3 degrees of freedom and can be written has the multiplication of 3 matrices:
 \begin{equation}
 	\mathbf{R} = \mathbf{R_3}(\theta_3)\cdot\mathbf{R_2}(\theta_2)\cdot\mathbf{R_1}(\theta_1)
 	\label{eq:defR}
