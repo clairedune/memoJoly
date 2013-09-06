@@ -178,7 +178,7 @@ In the following, we defined by $\Omega$ the set of the points which do not belo
 
 \subsection{Feet and legs segmentation}
 
-The main idea of feet and legs segmentation is based on region growing and inspired by \cite{aaa}. From a current set of points of a member, we look for potential candidates in the neighbouring and then validate it or not. The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented (paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}).
+The main idea of feet and legs segmentation is based on region growing and inspired by \TODO{\cite{aaa}}. \CD{The segmentation is perform directly in a 2D image that corresponds to the kinect depth map}{}. From \CD{an initial}{a current} set of points \CD{belonging to}{of} a member, we look for potential candidates in the neighbouring\CD{. And then, according to some distance \textit{criteria} we decide to keep or discard them}{ and then validate it or not. } The following paragraphs are dedicated to the presentation of the process. The global algorithm is presented in paragraph~\ref{subsub:generalAlgo}. Then application for legs and feet segmentation is presented in paragraph~\ref{subsub:legSegmentation} and~\ref{subsub:footSegmentation}.
 
 \subsubsection{General algorithm}~\\
 \label{subsub:generalAlgo}
