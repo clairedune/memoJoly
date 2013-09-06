@@ -229,13 +229,13 @@ The general algorithm for member segmentation is presented here:
 \label{paragraph:paramCylindre}
 To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder.  Let $\mathbf{m}$ be a Kinect image point whose distance to the cylinder of parameters $\mathbf{p}$ has to be evaluated. It is computed with the following steps:
 \begin{enumerate}
-	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CD{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
+	\item Let $\mathcal{B}=(\mathbf{u},\mathbf{v},\mathbf{w})$ be an orthonormal base with $\mathbf{w}$ in the same direction \CD{as}{than} the cylinder axis and  $\mathbf{C}$ a point belonging to this axis. \CD{We can define the rotation matrix $\mathbf{R} = \begin{bmatrix}\mathbf{u} & \mathbf{v} & \mathbf{w}\end{bmatrix}$ associated to the cylinder orientation.}{The rotation matrix $\mathbf{R}$  $(\mathbf{x},\mathbf{y},\mathbf{z})$ initiale à $\mathcal{B}$:
 	\begin{equation}
 		\mathbf{R} = 
 		\begin{bmatrix}
 			\mathbf{u} & \mathbf{v} & \mathbf{w}
 		\end{bmatrix}
-	\end{equation}
+	\end{equation}}
 	\item Let $\mathbf{M}$ be the 3D point (in the Kinect frame) associated to $\mathbf{m}$ and $\mathbf{M}'$ the coordinates of $M$ in the frame defined by $(\mathbf{C},\mathcal{B})$:
 	\begin{equation}
 		\mathbf{M}' = \mathbf{R}\left(\mathbf{M}-\mathbf{C}\right)
