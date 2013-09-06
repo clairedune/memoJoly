@@ -27,8 +27,14 @@
 \usepackage[font=footnotesize,caption=false]{subfig}
 \usepackage[caption=false,font=footnotesize]{subfig}
 \usepackage{hyperref}
-\newcommand{\TODO}[1]{\textcolor{green}{TODO : #1}} %pour liste ce qu'il reste à faire
+
+\newcommand{\TODO}[1]{\textcolor{green}{TODO : #1}} %pour lister ce qu'il reste à faire
+\newcommand{\CD}[2]{\textcolor{red}{#1}} %pour modifier un paragraph
+\newcommand{\CDKO}[2]{\textcolor{blue}{#2}} %pour liste ce qu'il reste à faire
+
 \newtheorem{rem}{Remark}
+
+
 \DeclareMathOperator{\e}{e}
 \title{\LARGE \bf Feet and legs tracking using a smart rollator
  }
@@ -65,7 +71,7 @@ Clinical evaluation of frailty in the elderly is the first step to decide the de
 
 The system used here is a \textit{smart rollator} equipped with sensors, for gait monitoring. The objective is to provide physicians with the features they are used to process to evaluate elderly frailty,  while maintaining a low cost  and ensuring a good ease of use and by embedding all the sensors on the walker without equipping the patient. And at best, the intelligent walker could deliver others relevant features that will enriched the existing feature set. 
 
-The paper is organised as following : \TODO{Decrire l'organisation du papier}
+\CD{This paper focuses on the use of an embedded kinect sensor to segment online the lower limb and estimated. The algorithm returns the pose of the leg and feet with regards to the rollator. The next section gives an overview of existing smart rollators and depicts our smart rollator.. Section III describes the lower limb detection and pose estimation, based on kinect depth map. Section IV focuses on a kalman filtering to refine this estimation. Section V shows experimental results  }{}
 
 \section{System description}
 
@@ -74,7 +80,7 @@ Depending on the degree of assistance they need, people are prescribed canes, cr
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\columnwidth]{images/rollator.eps}
-	\caption{A 4 wheeled rollators}
+	\caption{A 4 wheeled rollator}
 	\label{fig:rollator}
 \end{figure}
 
@@ -115,21 +121,25 @@ In this paper, the system aims at tracking some specific parameters for biomecha
 \item ankle angle trajectory
 \end{itemize}
 
-Our system is made by a standard walker on which some equipment was installed (fig.~\ref{fig:rollator}):
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\columnwidth]{images/ourrollator.eps}
+	\caption{Our smart rollator : a 4 wheeled rollator equipped with odometers and a kinect sensor}
+	\label{fig:ourrollator}
+\end{figure}
+
+
+Our system is made \CD{of}{by} a standard walker \CD{equipped with sensors}{on which some equipment was installed} (fig.~\ref{fig:ourrollator}):
 \begin{itemize}
 	\item The Kinect sensor which is viewing the feet of the person.
 	\item Odometers were mounted on the rear wheels to estimate the trajectory of the walker.
 	\item A laptop was installed to grab the sensor data
 	\item Finally, motion capture\footnote{A Qualysis system was used.} markers were installed in order to compute the ground truth. 
 \end{itemize}
+
+
 In this paper, we focus on the estimation of leg and feet poses in a Frame attached to the Kinect sensor. With such data, some interesting parameters like feet orientation or ankle angle trajectory can be directly computed. This is the main topic of this paper. Computation of step length, width or frequency will be done by fusing the results of this paper with odometry (out of scope here).
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.45\textwidth]{images/deambulateur}
-	\caption{Our smart rollator}
-	\label{fig:rollator}
-\end{figure}
 
 
 \section{Algorithm for Kinect processing}
