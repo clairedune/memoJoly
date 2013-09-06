@@ -520,7 +520,7 @@ Fig.~\ref{fig:footError} show the results of error in orientation of the feet. I
 
 The ankle angle estimation is also consistent (fig.~\ref{fig:errorAnkle}) even if it is a bit less precise than the feet elevation angles. 
 
-Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordinate of the heel computed by our model. However, we know that these two points are not exactly and that the point associated to the heel in our model is higher. To test the consistency of our model, we test if the real heel is in the axis defined by our model (fig~\ref{fig:heelError}). Then, the distance between the two points should be constant.
+Finally, we wanted to see if our model was able to when the heel is on the ground or not. We did it by comparing the $z$ coordinate of the ball joint of our model (which is a bit higher than the ankle) with the $z$ coordinate of the ankle. We do not look for exact results but a kind of correlation. Results are shown on fig.~\ref{fig:zAnkle}. Unfortunately, the Kinect data were available when the heels were not on the ground. However, it appears that the difference between the Kinect data (when available) and the ground truth are almost constant in comparison with the amplitude of the variation when there is a large motion. As a consequence, we guess that the error in estimation will not be important with respect to the amplitude of the variations. So, detecting if a foot is on the ground or not seems possible.
 
 %Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
 
@@ -541,9 +541,9 @@ Finally, we wanted to compare the $z$ coordinate of the heel to the $z$ coordina
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/heelError}
-	\caption{Difference between real heel position and estimation}
-	\label{fig:heelError}
+	\includegraphics[width=0.45\textwidth]{images/zAnkle}
+	\caption{Comparison of the $z$ coordinate of the joint ball of our model with the $z$ coordinate of the ankle}
+	\label{fig:zAnkle}
 \end{figure}
 
 
