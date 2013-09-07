@@ -33,11 +33,17 @@
 \newcommand{\CDKO}[2]{\textcolor{blue}{#2}} %pour revenir au texte precedent
 \newcommand{\CDOK}[2]{{#1}} %pour valider la modif
 
+\newcommand{\CJ}[2]{\textcolor{red}{#1}} %pour modifier un paragraph
+\newcommand{\CJKO}[2]{\textcolor{blue}{#2}} %pour revenir au texte precedent
+\newcommand{\CJOK}[2]{{#1}} %pour valider la modif
+
+
+
 \newtheorem{rem}{Remark}
 
 
 \DeclareMathOperator{\e}{e}
-\title{\LARGE \bf Feet and legs tracking using a smart rollator equipped with a Kinect sensor
+\title{\LARGE \bf Feet and legs tracking using a smart rollator equipped with a Kinect
  }
 
 \author{
@@ -66,9 +72,9 @@ Clinical evaluation of frailty in the elderly is the first step to decide the de
 
 \section{Introduction}
 
-Ageing in society is a worldwide issue that especially impacts northern countries. In France, due to the high care cost and to the limited number of rooms in care institution, the solution that has been chosen by care-givers, frail people and their family is to maintain elderly at home the longest and in the best conditions by giving them an\textit{ adapted assistance}.  \\
+Ageing in society is a worldwide issue that especially impacts northern countries. In France, due to the high care cost and to the limited number of rooms in care institution, the solution that has been chosen by care-givers, frail people and their family is to maintain elderly at home the longest and in the best conditions by giving them an\textit{ adapted assistance}. \CJ{}{ \\}
 
-Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. This evaluation is usually performed once and for all by filling standard forms with macro-information about standing and walking abilities, e.g. by measuring the time taken to walk $10m$. Advances in robotics make it possible to enhance a standard assistance device by adding sensors and actuators. The existing tests could  then be enriched by adding a new set of daily measured criteria derived from the daily use of standard assistance devices. This monitoring will allow to evaluate gait in ambulatory conditions, to measure the evolution of some pathologies, to refine diagnostics and to distinguish autonomy levels. The assistance device is not meant to be an alternative for clinical frailty observation but rather as a complementary tool that gives field information. The data acquired \textit{online} could also be used to control a robotics walker in order to prevent a fall. These new characteristics can extend the use of walkers to more diverse population. \\ 
+Clinical evaluation of frailty in the elderly is the first step to decide the degree of assistance they require. This evaluation is usually performed once and for all by filling standard forms with macro-information about standing and walking abilities, e.g. by measuring the time taken to walk $10m$. Advances in robotics make it possible to enhance a standard assistance device by adding sensors and actuators. The existing tests could  then be enriched by adding a new set of daily measured criteria derived from the daily use of standard assistance devices. This monitoring will allow to evaluate gait in ambulatory conditions, to measure the evolution of some pathologies, to refine diagnostics and to distinguish autonomy levels. The assistance device is not meant to be an alternative for clinical frailty observation but rather as a complementary tool that gives field information. The data acquired \textit{online} could also be used to control a robotics walker in order to prevent a fall. These new characteristics can extend the use of walkers to more diverse population.\CJ{}{ \\ }
 
 The system used here is a \textit{smart rollator} equipped with sensors, for gait monitoring. The objective is to provide physicians with the features they are used to process to evaluate elderly frailty,  while maintaining a low cost  and ensuring a good ease of use and by embedding all the sensors on the walker without equipping the patient. And at best, the intelligent walker could deliver others relevant features that will enriched the existing feature set. 
 
@@ -76,7 +82,7 @@ The system used here is a \textit{smart rollator} equipped with sensors, for gai
 
 \section{System description}
 
-Depending on the degree of assistance they need, people are prescribed canes, crutches or walkers \cite{Joyce91}. The latter can be legged walker or wheeled walkers (rollators). A rollator can be defined as a frame with wheels. It has handles with brakes, and in some case a seat, a basket and a tray (see fig. \ref{fig:rollator}).
+Depending on the degree of assistance they need, people are prescribed canes, crutches or walkers \cite{Joyce91}. The latter can be legged walker or wheeled walkers (rollators). A rollator can be defined as a frame with wheels. It has handles with brakes, and in some case a seat, a basket and a tray (\CJOK{}{see }fig. \ref{fig:rollator}).
 
 \begin{figure}[h]
 	\centering
@@ -93,7 +99,7 @@ Here is an overview of the the existing smart rollators, focusing on common whee
 
 Some of the existing Smarts walkers aim at tracking the trajectories of gait features in order to monitor health. The great advantage of such systems is that the user stands at a roughly known position with regards to the walker. Body segment localisation is then made easier.
 
-Walkers can be equipped with force-moment sensors mounted on the walker handles~\cite{Alwan07,Tung10}, or under the forearm~\cite{Frizera08,Frizera10b} to passively derive some gait characteristics. In both cases it is assumed that the force and moment recorded have cyclic changes reflecting the gait cycle and that these changes depend on basic gait features (cadence, stride time, gait phases).  The iWalker ~\cite{Tung10} quantifies loads exerted through the handles an frame and standards spatio-temporal parameters (such as speed and distance). In~\cite{Alwan07}, a direct comparison between motion capture and force-moment data was studied to detect significant pattern in the force signal. The lateral sway motion of the upper body reflects in peaks in vertical direction and in the corresponding forward moment signal. These peaks coincided with the heel initial contacts and. The forward propulsion force applied by the user is related to the toe-off event from the right and left toe. Finally, the stride (ie. duration of a gait cycle) can be computed from two heel contacts. In~\cite{Frizera10b}, a method based on Weighted Frequency Fourier Linear Combiner, is introduced for the same standards gait parameters extraction from force data.
+Walkers can be equipped with force-moment sensors mounted on the walker handles~\cite{Alwan07,Tung10}, or under the forearm~\cite{Frizera08,Frizera10b} to passively derive some gait characteristics. In both cases it is assumed that the force and moment recorded have cyclic changes reflecting the gait cycle and that these changes depend on basic gait features (cadence, stride time, gait phases).  The iWalker ~\cite{Tung10} quantifies loads exerted through the handles an frame and standards spatio-temporal parameters (such as speed and distance). In~\cite{Alwan07}, a direct comparison between motion capture and force-moment data was studied to detect significant pattern in the force signal. The lateral sway motion of the upper body reflects in peaks in vertical direction and in the corresponding forward moment signal. These peaks coincided with the heel initial contacts and the forward propulsion force applied by the user is related to the toe-off event from the right and left toe. Finally, the stride (ie. duration of a gait cycle) can be computed from two heel contacts. In~\cite{Frizera10b}, a method based on Weighted Frequency Fourier Linear Combiner, is introduced for the same standards gait parameters extraction from force data.
 
 Walker wheel motion measurement can also be used to estimated the user state~\cite{Spenko06,Merlet10b}. The Personal aid for mobility and monitoring project (PAMM)~\cite{Spenko06} developed health monitoring tools. The PAMM smart walker is an omnidirectional walker design for walking assistance with navigation and monitoring functionalities. Its sensors record user speed and compute the stride-to-stride variability, which have been shown to be an effective predictor of falls. A power spectrum analysis on PAMM's velocity allows to estimate user's stride length and frequency. Besides, the shape of the power spectrum is related to the gait symmetry. Indeed, for a symmetric gait, the energy is located at twice the stride frequency. However, the system can detect asymmetric gait as spectrum with energy located at the stride frequency and at higher frequency. An asymmetrical gait could be an indicator of a physical injury or a minor stroke.
 
@@ -127,7 +133,7 @@ Our system is made \CDOK{of}{by} a standard \CDOK{4 wheeled rollator}{walker} \C
 	\item The Kinect sensor which is viewing the feet of the person.
 	\item Odometers \CDOK{are}{were} mounted on the rear wheels to estimate the trajectory of the walker.
 	\item A laptop \CDOK{is}{was} installed to grab the sensor data
-	\item Finally, motion capture\footnote{A Qualysis system is used.} markers \CDOK{are}{were} installed in order to compute the ground truth. 
+	\item Finally, motion capture\CJOK{}{\footnote{A Qualisys system is used.}} markers \CDOK{are}{were} installed in order to compute the ground truth. 
 \end{itemize}
 
 
@@ -140,15 +146,15 @@ In this paper, we focus on the estimation of leg and feet poses in a frame attac
 
 \begin{figure*}
 	\centering
-	\includegraphics[width=0.95\textwidth,trim=4cm 2cm 2cm 3cm,clip=true]{images/KinectFrames}
+	\includegraphics[width=0.85\textwidth,trim=4cm 2cm 2cm 3.5cm,clip=true]{images/KinectFrames}
 	\caption{Left: kinect depth map. The warmer is the color, the larger the depth associated is -- Right: 3D points cloud associated to the depth map (for clarity the feet, rollator and ground were segmented).}
 	\label{fig:KinectFrames}
 \end{figure*}
 
-The algorithm to process Kinect images is presented in this section. \CDOK{The method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see Fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
+The algorithm to process Kinect images is presented in this section. \CDOK{The method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
 \begin{itemize}
-	\item a first segment which links the toe to the heel
-	\item a second segment which has a predefined length starting from the heel in the direction of the leg
+	\item a first segment which links the toe to the ankle
+	\item a second segment which has a predefined length starting from the ankle in the direction of the leg
 \end{itemize}
 \CDOK{To do so}{Moreover}, a \CDOK{parametric}{} model will be \CDOK{fitted}{fit} to each feet and leg. This will be done in four steps:
 \begin{enumerate}
@@ -161,7 +167,7 @@ We propose to describe these four steps in the following paragraphs.
 
 \subsection{Ground and walker segmentation}
 \label{subsec:GroundWalkerSeg}
-In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be almost the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. \footnote{Another solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm.} \CDOK{The orientation of the Kinect with regards to the ground plane can be used to compute the position of the point in a frame aligned with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
+In our experiments, the walker is used indoors on a flat ground. Since the Kinect sensor is rigidly fixed to the walker, the ground plane will be almost the same in all images. As a consequence it is possible to compute it once and for all and to consider it as constant. \CJOK{}{\footnote{Another solution could consists in detecting the main plane of the 3D points cloud with a RANSAC algortithm.}} \CDOK{The orientation of the Kinect with regards to the ground plane can be used to compute the position of the point in a frame aligned with the ground. It eases the reading of the point cloud.}{Moreover, a rotation matrix can be defined in order to change its orientation to an horizontal plane. At this step, we assume that the we apply this rotation matrix so that the $\mathbf{z}$ axis in the Kinect frame corresponds to the $\mathbf{z}$ axis of the world}.
 
 Besides, the rollator does not move with respect to the Kinect sensor and so is static in the Kinect frame. Then the 3D points that belong to the rollator can be estimated once and for all and remove from the depth map by using a constant mask.
 
@@ -213,10 +219,8 @@ The general algorithm for member segmentation is presented here:
 	\end{enumerate}
 \end{enumerate}
 
-\subsubsection{Leg segmentation}~\\
+\subsubsection{Leg segmentation}
 \label{subsub:legSegmentation}
-
-
 \paragraph{Model and definition of $\mathrm{dist}$ function}~\\
 \label{paragraph:paramCylindre}
 To segment the legs, a \emph{cylinder model} is used. It is a 5 parameters primitive (4 parameters stand for its axis and one for its radius). The distance considered is the radial distance to the cylinder. \\
@@ -256,7 +260,7 @@ where $\mathbf{R_1}(\theta_1)$ (resp. $\mathbf{R_2}(\theta_2)$, $\mathbf{R_3}(\t
 From \eqref{eq:defR} and \eqref{eq:defC}, cylinder pose uses 6 parameters. However, it is possible to use only 4 parameters. Using 6 parameters could lead to divergence during optimization. We propose to use only 4 parameters by using the following remarks: 
 \begin{enumerate}
 	\item Since a cylinder has a revolution symmetry, there is an infinite number of solution to define the base $(\mathbf{u},\mathbf{v},\mathbf{w})$. Only the direction of $\mathbf{w}$ is important (it corresponds to the direction of the cylinder); as a consequence, any rotation of $(\mathbf{u},\mathbf{v})$ around $\mathbf{w}$ can change the results of distance computation. So, we can multiply by the left the matrix $\mathbf{R}$ by any matrix of the form $\mathbf{R_3}(\theta)$ ($\theta\in[0\ 2\pi]$) without modifying the function $\mathrm{dist}$. As a consequence, any value of $theta_3$ is valid. So, we chose to fix it to zero and do not estimate it.
-	\item Finally, the choice of $\mathbf{C}$ is not unique: every point of the cylinder axis is valid. Thus, there is one degree of freedom to remove. To do it and force they unicity of $\mathbf{C}$, it was chosen to fix the third component ($c_z$, see~\eqref{eq:defC}). Fixing this component is save as soon as the cylinder axis is not perpendicular to the $\mathbf{z}$ axis.\footnote{Which corresponds to the direction perpendicular to the ground, see paragraph~\ref{}} Such situation implies that the leg is parallel to the ground, which does appear in our context. So, parameters $c_x$ and $c_y$ can be seen as a function of $c_z$ which is arbitrarily \footnote{Not really in practice. $c_z$ is chosen so that it is possible to find a good initialisation of $c_x$ and $c_y$ to optimize the minimisation process during fitting.}
+	\item Finally, the choice of $\mathbf{C}$ is not unique: every point of the cylinder axis is valid. Thus, there is one degree of freedom to remove. To do it and force they unicity of $\mathbf{C}$, it was chosen to fix the third component ($c_z$, see~\eqref{eq:defC}). Fixing this component is save as soon as the cylinder axis is not perpendicular to the $\mathbf{z}$ axis.\CJ{}{\footnote{Which corresponds to the direction perpendicular to the ground, see paragraph~\ref{}}} Such situation implies that the leg is parallel to the ground, which does appear in our context. So, parameters $c_x$ and $c_y$ can be seen as a function of $c_z$ which is arbitrarily \footnote{In practice. $c_z$ is chosen so that it is possible to find a good initialisation of $c_x$ and $c_y$ to optimize the minimisation process during fitting.}
 \end{enumerate}
 
 Finally, each leg is represented by a cylinder which parameters are stored in a 5D vector:
@@ -303,7 +307,7 @@ In~\eqref{eq:defEstCyl2}, the minimum is computed with the Levenberg-Marquardt m
 \begin{rem}
 In \eqref{eq:defEstCyl1} and \eqref{eq:defEstCyl2}, $(1+\e^{-a})^{-1}$ is used to penalize solutions with a large radius. Since the 3D points cloud associated to the legs corresponds only to a partial cylinder (around 30deg), the radius is not easily observable and the function to minimize tends to be ``plate''. Introducing $(1+\e^{-a})^{-1}$ yields in slightly favoring cylinder with smaller radius. Moreover, it can be obserbed that $(1+\e^{-a})^{-1}$ is always between $1$ and $1/2$ and can not have a strong influence on the final result or make converge the final result to a radius close to zero.\footnote{This is not be the case with a factor such as $\sqrt{a}$ like in \cite{Leonardis97}.}
 \end{rem}
-\subsubsection{Foot segmentation}~\\
+\subsubsection{Foot segmentation}
 \label{subsub:footSegmentation}
 \paragraph{Model and definition of $\mathrm{dist}$ function}~\\
 For the feet, a planar model is used and is parameterized by its 4 parameters:
@@ -332,7 +336,6 @@ The function $\mathrm{dist}$ corresponds to the Euclidean distance to the plane.
 
 
 \subsubsection{Definition of $\mathrm{fit}$ function}~\\
-
 The $\mathrm{fit}$ function is defined as the minimization of the error function to the plane with the constraint $\|\mathbf{p}\|=1$. Let $\mathcal{M}$ be the set to fit and $\mathbf{g}(\mathcal{M},\mathbf{p})$ the vector defined by:
 \begin{equation}
 \mathbf{g}(\mathcal{M},\mathbf{p})=
@@ -383,9 +386,9 @@ The method that is used to segment the feet and the legs needs to provide an ini
 \end{enumerate}
 \begin{figure*}
 	\centering
-	\subfloat[][After ground and rollator segmentation]{\label{subfig:seg1}\includegraphics[width=0.32\textwidth]{images/seg0}}\hfill
-	\subfloat[][At initialization]{\label{subfig:seg2}\includegraphics[width=0.32\textwidth]{images/segIni}} \hfill
-	\subfloat[][Final result]{\label{subfig:seg3}\includegraphics[width=0.32\textwidth]{images/segEnd}}
+	\subfloat[][After ground and rollator segmentation]{\label{subfig:seg1}\includegraphics[width=0.3\textwidth,trim=0cm 1cm 0cm 1cm,clip=true]{images/seg0}}\hfill
+	\subfloat[][At initialization]{\label{subfig:seg2}\includegraphics[width=0.3\textwidth,trim=0cm 1cm 0cm 1cm,clip=true]{images/segIni}} \hfill
+	\subfloat[][Final result]{\label{subfig:seg3}\includegraphics[width=0.3\textwidth,trim=0cm 1cm 0cm 1cm,clip=true]{images/segEnd}}
 	\caption{Steps of segmentation}
 	\label{fig:segmentation}
 \end{figure*}
@@ -414,7 +417,7 @@ Thus, the whole points are fitted in the same optimization process (of course, e
 \subsection{Final parameters}
 The final step consists in transforming the legs and feet parameters into a bone representation. For each side, we have:
 \begin{enumerate}
-	\item The heel is computed as the intersection between the axis cylinder and the plane associated to the foot. More precisely, since the plane corresponds to the \emph{top of the foot}, it does not correspond exactly to a point which is higher. Then, a segment starting from this point in the direction of the leg is defined to visualize the leg.
+	\item The ankle is computed as the intersection between the axis cylinder and the plane associated to the foot. More precisely, since the plane corresponds to the \emph{top of the foot}, it does not correspond exactly to a point which is higher. Then, a segment starting from this point in the direction of the leg is defined to visualize the leg.
 	\item The toe we get it by using the foot plane and the 3D points associated. It is computed in steps:
 	\begin{enumerate}
 		\item Firstly, the 3D point cloud is projected onto the plane computed previously
@@ -426,7 +429,7 @@ An example of the results provided by the algorithm is provided on fig.~\ref{fig
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/exampleBones}
+	\includegraphics[width=0.45\textwidth,trim=0cm 2cm 0cm 1cm,clip=true]{images/exampleBones}
 	\caption{Example of result provided by the algorithm (black bones). The Kinect data are plotted in yellow and the ground truth markers are in red.}
 	\label{fig:exampleBones}
 \end{figure}
@@ -446,7 +449,7 @@ The idea is to define a state with the 3 points defining the two segments. A cla
 		\mathbf{X_1}^T_k & \mathbf{X_1}^T_k & \mathbf{X_1}^T_k & \mathbf{V_1}^T_k & \mathbf{V_2}^T_k & \mathbf{V_3}^T_k
 	\end{bmatrix}^T
 \end{equation}
-where $\mathbf{X_1}$ (resp. $\mathbf{X_2}$) is the vector representing the 3D Euclidean coordinates of the toe (resp. heel). $\mathbf{X_3}$ stands for the 3D coordinates of the last point of the bones representation. It is defined such that it $\mathbf{X_3}-\mathbf{X_2}$ is in the direction of the cylinder and has a predetermined norm. $\mathbf{V_1}$, $\mathbf{V_2}$ and $\mathbf{V_3}$ are the associated speeds. The evolution matrix is given by:
+where $\mathbf{X_1}$ (resp. $\mathbf{X_2}$) is the vector representing the 3D Euclidean coordinates of the toe (resp. ankle). $\mathbf{X_3}$ stands for the 3D coordinates of the last point of the bones representation. It is defined such that it $\mathbf{X_3}-\mathbf{X_2}$ is in the direction of the cylinder and has a predetermined norm. $\mathbf{V_1}$, $\mathbf{V_2}$ and $\mathbf{V_3}$ are the associated speeds. The evolution matrix is given by:
 \begin{equation}
 	\mathbf{X}_{k} =
 	\begin{bmatrix}
@@ -487,7 +490,7 @@ By construction, the norm of $\mathbf{X_3} -\mathbf{X_2}$ is constant and known.
 where $d$ is known and fixed by advance. Similarly to the previous constraint, a covariance matrix close to zero is associated to \eqref{eq:constr2}.
 
 \subsection{Outlier rejection}
-Finally, the Kalman  prediction can be applied to outlier rejection. The idea is to compare Mahlanobis distance between the prediction of $\mathbf{X_i}_k$ and its measurement provided by the segmentation algorithm, with is the sum of the covariance matrices of the prediction and the measurement. So, we compute the following value for each point $i\in[1\dots 3]$:
+Finally, the Kalman  prediction can be \CJOK{used}{applied} to outlier rejection. The idea is to compare Mahalanobis distance between the prediction of $\mathbf{X_i}_k$ and its measurement provided by the segmentation algorithm, with is the sum of the covariance matrices of the prediction and the measurement. So, we compute the following value for each point $i\in[1\dots 3]$:
 \begin{equation}
 	\tiny
 	\left(
@@ -508,50 +511,50 @@ This algorithm allows us to detect and reject spurious values computed by the se
 This section presents preliminary results obtained on four young and healthy persons by observing their gait using our smart walker.
 
 \subsection{Experimental set up}
-Our rollator with Kinect was tested with a person walking during two cycles of walk. A ground truth is provided by the motion capture sensor. We propose in this experiment to compute the evolution of several parameters during the walk:
+Our rollator with Kinect was tested with a person walking during two cycles of walk. A ground truth is provided by the motion capture sensor. We propose in this experiment to compute the evolution of several parameters during the walk\CJOK{: the feet angles in the Kinect frame, the angle of ankle articulation and the $z$ coordinate of the ankle.}{:
 \begin{itemize}
 	\item The feet angles in the Kinect frame
 	\item The angle of ankle articulation
 	\item The height of the ankle
-\end{itemize}
+\end{itemize}}
 These parameters provide very useful information about the walk. For example, it is possible to know if the cycle is standard or not. %By combining these information with the odometry, it is possible to make statistics about the length of the steps (out of the scope of this paper).
 
 \subsection{Results analysis}
 
-Fig.~\ref{fig:footError} shows the results of error in orientation of the feet. We decided to look at the orientation of the feet in the horizontal plane (bearing angle) and the orientation of the angle that makes the feet with respect to this plane (elevation angle). It can be seen that the elevation angle is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not (jointly with the toe estimation). The empty parts where there is no results correspond to the case were the member was not correctly seen in the Kinect image. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was observable, thus adding a bias in the estimation. However, the results are still globally consistent and can be used to detect anomalies in the angle feet.
+Fig.~\ref{fig:footError} shows the results of error in orientation of the feet. We decided to look at the orientation of the feet in the horizontal plane (bearing) and the the angle made by a foot with respect to this plane (elevation). It can be seen that the elevation angle is pretty well estimated (less than 5deg of error in most cases). This is an important result that show that the system may be able to pretty well estimate if a foot is on the ground or not (jointly with the toe estimation). The empty parts where there is no results correspond to the case were the member was not correctly seen in the Kinect image. Concerning the bearing angles, the results are less precise. This can be explained by the quality of some Kinect points cloud: in some case, only a very small part of the front on the leg was observable, thus adding a bias in the estimation. However, the results are still globally consistent and can be used to detect anomalies in the angle feet.
 
 The ankle angle estimation is also consistent (fig.~\ref{fig:errorAnkle}) even if it is a bit less precise than the feet elevation angles. 
 
-Finally, we wanted to see if our model was able to detect when the heel is on the ground or not. We did it by comparing the $z$ coordinate of the ball joint of our model (which is a bit higher than the ankle) with the $z$ coordinate of the ankle (with this $z$ ankle coordinate, it is easy to know if the heel is on the ground or not). We do not look for exact results but a kind of correlation. Results are shown on fig.~\ref{fig:zAnkle}. Unfortunately, the Kinect data were available when the heels were not on the ground. However, it appears that the difference between the Kinect data (when available) and the ground truth is almost constant in comparison with the amplitude of the variation when there is a large motion. As a consequence, we guess that errors may not impact the detection the detection of the heel ``state'' (on the ground or not).
+Finally, we wanted to see if our model was able to detect when the heel is on the ground or not. We did it by comparing the $z$ coordinate of the ball joint of our model with the $z$ coordinate of the ankle (with this $z$ ankle coordinate, it is easy to know if the heel is on the ground or not). We do not look for exact results but a kind of correlation. Results are shown on fig.~\ref{fig:zAnkle}. Unfortunately, the Kinect data were not available when the heels were not on the ground. However, it appeared that the difference between the Kinect data (when available) and the ground truth is almost constant. It shows that our ankle estimation is a bit higher than the real one. Nevertheless, the variations of this offset are low with respect to the variations of $z$ during a whole cycle gait. As a consequence, we guess that the estimation error due to noise will not affect the detection of heel contact.
 
 %Finally, the $z$ trajectory computed for the toe seems coherent:\footnote{Unfortunately, there is no ground truth for this point} we can see that it is sometimes on the ground and then at a higher altitude. 
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/footError}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/footError}
 	\caption{Orientation errors for the feet}
 	\label{fig:footError}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/errorAnkle}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/errorAnkle}
 	\caption{Error on ankle angle estimation}
 	\label{fig:errorAnkle}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/zAnkle}
-	\caption{Comparison of the $z$ coordinate of the joint ball of our model with the $z$ coordinate of the ankle}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/zAnkle}
+	\caption{Comparison of the $z$ coordinates of the real and estimated ankles}
 	\label{fig:zAnkle}
 \end{figure}
 
 \section{Conclusion}
 We proposed in this paper an original system able to track the feet and legs position during an assisted walk without equipping the user. We did it by using Kinect sensor and an original algorithm which uses the depth map to produce an informative model. Preliminary results are proposed and shows the feasibility of the method since we were able to compute parameters consistent with the ones provided by the motion capture. This represents very promising results in order to design a system 
 
-However, the actual set up was unable to capture the data during all the phases of a step walk. This is due both to the range of the sensor which is not able to deals with very close data and its orientation on the system. In the future, we will solve these problems by modifying slightly the position of the sensor and using a Kinect-like sensor able to deal precisely with small ranges. Then, our algorithm will be extensively tested.
+However, the actual set up was unable to capture the data during all the phases of a cycle gait. This is due both to the range of the sensor which is not able to deals with very close data and its orientation on the system. In the future, we will solve these problems by modifying slightly the position of the sensor and using a Kinect-like sensor able to deal precisely with small ranges. Then, our algorithm will be extensively tested. We guess that we will able to detect precise parameters of the gait, like the initial contract, the toe-off event or the duration of the cycle gait.
 
 Finally, the last perspective of this work is the inclusion of odometry data. By using the data provided by our model and the odometry, interesting additional parameters about the walk may be computed and analyzed. Future work will consist in testing such approach.
 
