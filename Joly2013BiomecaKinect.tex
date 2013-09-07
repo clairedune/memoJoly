@@ -422,7 +422,7 @@ The final step consists in transforming the legs and feet parameters into a bone
 	\begin{enumerate}
 		\item Firstly, the 3D point cloud is projected onto the plane computed previously
 		\item Then, the convex hull of this projection is computed with its barycenter.
-		\item The vector joining the ``hell'' to this barycenter provides the foot direction. The further 3D point in this direction define the toe.
+		\item The vector joining the ankle to this barycenter provides the foot direction. The further 3D point in this direction define the toe.
 	\end{enumerate}
 \end{enumerate}
 An example of the results provided by the algorithm is provided on fig.~\ref{fig:exampleBones}
@@ -527,21 +527,21 @@ Finally, we wanted to see if our model was able to detect when the heel is on th
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/footError}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/footError}
 	\caption{Orientation errors for the feet}
 	\label{fig:footError}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/errorAnkle}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/errorAnkle}
 	\caption{Error on ankle angle estimation}
 	\label{fig:errorAnkle}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.4cm 0cm 0cm,clip=true]{images/zAnkle}
+	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/zAnkle}
 	\caption{Comparison of the $z$ coordinates of the real and estimated ankles}
 	\label{fig:zAnkle}
 \end{figure}
@@ -549,7 +549,7 @@ Finally, we wanted to see if our model was able to detect when the heel is on th
 \section{Conclusion}
 We proposed in this paper an original system able to track the feet and legs position during an assisted walk without equipping the user. We did it by using Kinect sensor and an original algorithm which uses the depth map to produce an informative model. Preliminary results are proposed and shows the feasibility of the method since we were able to compute parameters consistent with the ones provided by the motion capture. This represents very promising results in order to design a system 
 
-However, the actual set up was unable to capture the data during all the phases of a cycle gait. This is due both to the range of the sensor which is not able to deals with very close data and its orientation on the system. In the future, we will solve these problems by modifying slightly the position of the sensor and using a Kinect-like sensor able to deal precisely with small ranges. Then, our algorithm will be extensively tested. We guess that we will able to detect precise parameters of the gait, like the initial contract, the toe-off event or the duration of the cycle gait.
+However, the actual set up was unable to capture the data during all the phases of a cycle gait. This is due both to the range of the sensor which is not able to deal with very close data and its orientation on the system. In the future, we will solve these problems by modifying slightly the position of the sensor and using a Kinect-like sensor able to deal precisely with small ranges. Then, our algorithm will be extensively tested. We guess that we will able to detect precise parameters of the gait, like the initial contract, the toe-off event or the duration of the cycle gait.
 
 Finally, the last perspective of this work is the inclusion of odometry data. By using the data provided by our model and the odometry, interesting additional parameters about the walk may be computed and analyzed. Future work will consist in testing such approach.
 
