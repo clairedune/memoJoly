@@ -173,7 +173,7 @@ In this paper, we focus on the estimation of leg and feet poses in a frame attac
 
 The algorithm to process Kinect images is presented in this section. \CDOK{Our method aims at fitting a 3D skeleton on the partial Kinect data. Although there exists an algorithm to build a squeleton in the Kinect SDK, it can not be applied to our data since the body must be seen entirely in the Kinect image (which is not our case: only  feet and legs are visible). 
 
-The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
+The 2 legs will be described as two rigid bodies linked with a ball joint (which represents an approximation of the ankle joint)}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the ankle
 	\item a second segment which has a predefined length starting from the ankle in the direction of the leg
