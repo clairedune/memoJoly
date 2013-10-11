@@ -104,7 +104,10 @@ In~\cite{Frizera10b}, a method based on Weighted Frequency Fourier Linear Combin
 
 Walker wheel motion measurement can also be used to estimated the user state~\cite{Spenko06,Merlet10b}.The Personal Aid for Mobility and Monitoring project (PAMM)~\cite{Spenko06} developed health monitoring tools. It is an omnidirectional walker design for walking assistance with navigation and monitoring functionalities. Its sensors record user speed and compute the stride-to-stride variability, which have been shown to be an effective predictor of falls.% A power spectrum analysis on PAMM's velocity allows to estimate user's stride length and frequency. Besides, the shape of the power spectrum is related to the gait symmetry. Indeed, for a symmetric gait, the energy is located at twice the stride frequency. However, the system can detect asymmetric gait as spectrum with energy located at the stride frequency and at higher frequency. An asymmetrical gait could be an indicator of a physical injury or a minor stroke.
 
-Direct measurement of body segments may be obtained by using ultrasonics sensors or cameras \cite{Frizera08,Chee09}. A vector of ultrasonic sensors can be mounted on the walker to scan the space between the user and the walker and determine coordinate of each leg without adding any marker on the patient~\cite{Frizera08}. In ~\cite{Chee09}, a camera is mounted on the frame and observes markers on the toes. This marker based toe tracking algorithm allows to calculate step width and provide an accurate assessment of foot placement during rollator use.
+Direct measurement of body segments may be obtained by using ultrasonics sensors, infra-red sensors or cameras \cite{Frizera08,Chee09, Zong10}. A vector of ultrasonic sensors can be mounted on the walker to scan the space between the user and the walker and determine coordinate of each leg without adding any marker on the patient~\cite{Frizera08}. In ~\cite{Chee09}, a camera is mounted on the frame and observes markers on the toes. This marker based toe tracking algorithm allows to calculate step width and provide an accurate assessment of foot placement during rollator use.
+
+%In \cite{zong_icarcv}, the authors present a smart rollator similar to ours which is able to capture gait parameters thanks to infra-red sensors close to the ground. 
+
   
 %The main issue when using that kind of device is that the accuracy of the leg localisation depends strongly on the clothes that the user wears. It is a drawback with regards to method based on odometers or force sensors. The method proposes in~\cite{Chee09} by-passes this point by adding markers on the toes. Yet it also by-passes our constraint not to equip the user in order to ensure acceptance and ease of use.
 
@@ -168,7 +171,9 @@ In this paper, we focus on the estimation of leg and feet poses in a frame attac
 	\label{fig:KinectFrames}
 \end{figure*}
 
-The algorithm to process Kinect images is presented in this section. \CDOK{The method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
+The algorithm to process Kinect images is presented in this section. Although there exists an algorithm to build a squeleton in the Kinect SDK, it can not be applied to our data since the body must be seen entirely in the Kinect image (which is not our case: only  feet and legs are visible).
+
+ \CDOK{Our method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the ankle
 	\item a second segment which has a predefined length starting from the ankle in the direction of the leg
