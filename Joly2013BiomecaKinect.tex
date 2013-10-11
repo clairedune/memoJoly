@@ -171,9 +171,9 @@ In this paper, we focus on the estimation of leg and feet poses in a frame attac
 	\label{fig:KinectFrames}
 \end{figure*}
 
-The algorithm to process Kinect images is presented in this section. Although there exists an algorithm to build a squeleton in the Kinect SDK, it can not be applied to our data since the body must be seen entirely in the Kinect image (which is not our case: only  feet and legs are visible).
+The algorithm to process Kinect images is presented in this section. \CDOK{Our method aims at fitting a 3D skeleton on the partial Kinect data. Although there exists an algorithm to build a squeleton in the Kinect SDK, it can not be applied to our data since the body must be seen entirely in the Kinect image (which is not our case: only  feet and legs are visible). 
 
- \CDOK{Our method aims at fitting a 3D skeleton on the partial Kinect data. The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
+The 2 legs will be described as two rigid bodies linked with a ball joint (which represent an approximation of the ankle joint).}{The goal of the method is to segment  Kinect points cloud (see fig.~\ref{fig:KinectFrames}) in two part (left and right) which are composed by}:
 \begin{itemize}
 	\item a first segment which links the toe to the ankle
 	\item a second segment which has a predefined length starting from the ankle in the direction of the leg
@@ -549,21 +549,21 @@ Finally, we wanted to see if our model was able to detect when the heel is on th
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/footError}
+	\includegraphics[width=0.49\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/footError}
 	\caption{Orientation errors for the feet}
 	\label{fig:footError}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/errorAnkle}
+	\includegraphics[width=0.49\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/errorAnkle}
 	\caption{Error on ankle angle estimation}
 	\label{fig:errorAnkle}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/zAnkle}
+	\includegraphics[width=0.49\textwidth,trim=.5cm 0.45cm 0cm 0cm,clip=true]{images/zAnkle}
 	\caption{Comparison of the $z$ coordinates of the real and estimated ankles}
 	\label{fig:zAnkle}
 \end{figure}
